@@ -4,3 +4,8 @@ __pycache__/
 *$py.class
 venv/
 env/
+
+# Checkpoint directories and jupyter caches
+checkpoints/
+runs/
+.ipynb_checkpoints/
