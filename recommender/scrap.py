@@ -9,3 +9,6 @@ categories = ['face-moisturisers', 'cleanser', 'sunscreen', 'concealer', 'mask-a
 products_from_each_category = 300
 pages = products_from_each_category // 50
 df = pd.DataFrame(columns=['label', 'url'])
+
+base_url = 'https://www.myntra.com/'
+# Collect product URLs from category listing pages
