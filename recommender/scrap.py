@@ -12,3 +12,5 @@ df = pd.DataFrame(columns=['label', 'url'])
 
 base_url = 'https://www.myntra.com/'
 # Collect product URLs from category listing pages
+
+skin_metrics = set(['brand', 'name', 'price', 'skin type', 'spf', 'concern', 'concern 2', 'concern 3', 'key ingredient', 'formulation'])
