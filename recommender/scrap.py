@@ -117,3 +117,5 @@ print(df)
 df.to_csv('result.csv', encoding='utf-8-sig', index=False)
 
 
+
+# Product feature parsing utility functions
