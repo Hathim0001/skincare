@@ -23,4 +23,10 @@ class Recommender:
                     one_hot_encodings[i][0:5] = 1
                 elif target == sk_type:
                     one_hot_encodings[i][j] = 1
+
+        for i in range(entries):
+            for j in range(5, len(self.features)):
+                feature = self.features[j]
+                if feature in self.df.iloc[i]['concern']:
+                    one_hot_encodings[i][j] = 1
         return np.array(one_hot_encodings)
