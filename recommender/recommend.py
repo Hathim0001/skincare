@@ -30,3 +30,14 @@ class Recommender:
                 if feature in self.df.iloc[i]['concern']:
                     one_hot_encodings[i][j] = 1
         return np.array(one_hot_encodings)
+
+    def wrap(self, info_arr):
+        result = {}
+        result['brand'] = info_arr[0]
+        result['name'] = info_arr[1]
+        result['price'] = info_arr[2]
+        result['url'] = info_arr[3]
+        result['skin type'] = info_arr[4]
+        result['concern'] = str(info_arr[5]).split(',')
+        result['image_url'] = info_arr[6]
+        return result
