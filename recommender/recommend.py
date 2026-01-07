@@ -41,3 +41,28 @@ class Recommender:
         result['concern'] = str(info_arr[5]).split(',')
         result['image_url'] = info_arr[6]
         return result
+
+    def recs_cs(self, vector=None, name=None, label=None, count=4):
+        products = []
+        if name:
+            idx = self.name2index(name)
+            fv = self.X[idx]
+        elif vector:
+            fv = vector
+
+        cs_values = cosine_similarity(np.array([fv, ]), self.X)
+        self.df['cs'] = cs_values[0]
+
+        if label:
+            dff = self.df[self.df['label'] == label]
+        else:
+            dff = self.df
+
+        if name:
+            dff = dff[dff['name'] != name]
+
+        recommendations = dff.sort_values('cs', ascending=False).head(count)
+        data = recommendations[['brand', 'name', 'price', 'url', 'skin type', 'concern', 'image url']].to_dict('split')['data']
+        for element in data:
+            products.append(self.wrap(element))
+        return products
