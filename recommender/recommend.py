@@ -66,3 +66,13 @@ class Recommender:
         for element in data:
             products.append(self.wrap(element))
         return products
+
+    def recommend(self, vector=None, name=None):
+        response = {}
+        for label in self.LABELS:
+            if name:
+                r = self.recs_cs(None, name, label)
+            elif vector:
+                r = self.recs_cs(vector, None, label)
+            response[label] = r
+        return response
