@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
+from sklearn.neighbors import NearestNeighbors
 from sklearn.metrics.pairwise import cosine_similarity
 
-class Recommender:
+
+class Recommender():
     def __init__(self, df_path, features):
         self.df = pd.read_csv(df_path, index_col='id')
         self.features = features
@@ -15,6 +17,8 @@ class Recommender:
     def get_one_hot_encoded_vectors(self):
         entries = len(self.df)
         one_hot_encodings = np.zeros([entries, len(self.features)])
+
+        # skin types first
         for i in range(entries):
             for j in range(5):
                 target = self.features[j]
@@ -24,11 +28,13 @@ class Recommender:
                 elif target == sk_type:
                     one_hot_encodings[i][j] = 1
 
+        # other features
         for i in range(entries):
             for j in range(5, len(self.features)):
                 feature = self.features[j]
                 if feature in self.df.iloc[i]['concern']:
                     one_hot_encodings[i][j] = 1
+
         return np.array(one_hot_encodings)
 
     def wrap(self, info_arr):
@@ -62,7 +68,9 @@ class Recommender:
             dff = dff[dff['name'] != name]
 
         recommendations = dff.sort_values('cs', ascending=False).head(count)
-        data = recommendations[['brand', 'name', 'price', 'url', 'skin type', 'concern', 'image url']].to_dict('split')['data']
+
+        data = recommendations[['brand', 'name', 'price', 'url',
+                                'skin type', 'concern', 'image url']].to_dict('split')['data']
         for element in data:
             products.append(self.wrap(element))
         return products
@@ -76,3 +84,29 @@ class Recommender:
                 r = self.recs_cs(vector, None, label)
             response[label] = r
         return response
+
+
+if __name__ == 'main':
+    features = ['normal',
+                'dry',
+                'oily',
+                'combination',
+                'sensitive',
+                'general care',
+                'hydration',
+                'dull skin',
+                'dryness',
+                'softening',
+                'smoothening',
+                'fine lines',
+                'wrinkles',
+                'acne',
+                'blemishes',
+                'pore care',
+                'daily use',
+                'dark circles']
+
+    fv = [1, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0]
+    print(Recommender('recommender/essential_skin_care.csv', features).recommend(fv))
+
+
