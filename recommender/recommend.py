@@ -110,3 +110,5 @@ if __name__ == 'main':
     print(Recommender('recommender/essential_skin_care.csv', features).recommend(fv))
 
 
+
+# Optimized recommendation score matching algorithm
