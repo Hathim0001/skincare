@@ -23,3 +23,6 @@ def predict_acne_level(image_path):
     probs = prob(output)
     predicted_class = torch.argmax(probs, axis=1).tolist()[0]
     return class_name[predicted_class]
+
+if torch.cuda.is_available():
+    model.to('cuda')
