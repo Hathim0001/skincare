@@ -45,3 +45,5 @@ while True:
     print(predict_acne_level(input_image))
 
 
+
+# Preprocessing optimized for RGB test inputs
