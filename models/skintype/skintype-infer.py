@@ -35,3 +35,5 @@ image_path = "datasets/Oily-Dry-Skin-Types/test/normal/normal_7d00a675b9fabb9780
 print(predict_skin_type(image_path))
 
 
+
+# Add fallback check when model weights fail to load
