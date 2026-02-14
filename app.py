@@ -2,10 +2,11 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import torch
+import torchvision.transforms as transforms
+import torch.nn as nn
 from PIL import Image
-
-st.title("Skin Care Essentials")
-st.header("Personalized Skin Care Recommendations")
+from models.acne.acne_model import MyNet
+from recommender.recommend import Recommender
 
 products_path = 'recommender/essential_skin_care.csv'
 features = [
@@ -14,3 +15,10 @@ features = [
     'fine lines', 'wrinkles', 'acne', 'blemishes', 'pore care',
     'daily use', 'dark circles'
 ]
+
+try:
+    acne_model = MyNet()
+    acne_model.load_state_dict(torch.load('saved_models/acne-severity/best_6.pt', map_location='cpu'))
+    acne_model.eval()
+except Exception:
+    acne_model = None
