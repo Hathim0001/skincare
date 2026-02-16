@@ -22,3 +22,12 @@ try:
     acne_model.eval()
 except Exception:
     acne_model = None
+
+try:
+    skintype_model = MyNet()
+    skintype_model.load_state_dict(torch.load('saved_models/skintype/best_20.pt', map_location='cpu'))
+    skintype_model.eval()
+except Exception:
+    skintype_model = None
+
+recommender = Recommender(products_path, features)
