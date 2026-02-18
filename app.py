@@ -31,3 +31,18 @@ except Exception:
     skintype_model = None
 
 recommender = Recommender(products_path, features)
+
+def predict_acne_level(image):
+    if acne_model is None:
+        return None
+    preprocess = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+    ])
+    input_tensor = preprocess(image).unsqueeze(0)
+    with torch.no_grad():
+        output = acne_model(input_tensor)
+        probs = nn.Softmax(dim=1)(output)
+        predicted_class = torch.argmax(probs, axis=1).item()
+    return predicted_class
