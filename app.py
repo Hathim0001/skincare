@@ -46,3 +46,17 @@ def predict_acne_level(image):
         probs = nn.Softmax(dim=1)(output)
         predicted_class = torch.argmax(probs, axis=1).item()
     return predicted_class
+
+def predict_skin_type(img):
+    if skintype_model is None:
+        return None
+    preprocess = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    input_tensor = preprocess(img.convert("RGB")).unsqueeze(0)
+    with torch.no_grad():
+        output = skintype_model(input_tensor)
+        predicted_class = torch.argmax(output, axis=1).item()
+    return predicted_class
