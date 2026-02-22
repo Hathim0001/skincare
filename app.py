@@ -60,3 +60,20 @@ def predict_skin_type(img):
         output = skintype_model(input_tensor)
         predicted_class = torch.argmax(output, axis=1).item()
     return predicted_class
+
+def get_feature_vector(skin_type, acne_level, selected_features):
+    fv = [0] * len(features)
+    if skin_type == 'Normal':
+        fv[0] = 1
+    elif skin_type == 'Dry':
+        fv[1] = 1
+    else:
+        fv[2] = 1
+    if acne_level >= 2:
+        fv[13] = 1
+    for feature in selected_features:
+        fv[features.index(feature)] = 1
+    return fv
+
+def get_essential_skincare(fv):
+    return recommender.recommend(fv)
