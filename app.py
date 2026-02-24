@@ -77,3 +77,8 @@ def get_feature_vector(skin_type, acne_level, selected_features):
 
 def get_essential_skincare(fv):
     return recommender.recommend(fv)
+
+def main():
+    st.title("Skin Care Essentials")
+    st.header("Personalized Skin Care Recommendations")
+    uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
