@@ -82,3 +82,17 @@ def main():
     st.title("Skin Care Essentials")
     st.header("Personalized Skin Care Recommendations")
     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+    if uploaded_image:
+        image = Image.open(uploaded_image)
+        st.image(image, caption="Uploaded Image", use_column_width=True)
+
+        if acne_model is not None:
+            acne_level = predict_acne_level(image)
+            severity_levels = ['Clear', 'Mild', 'Severe', 'Extreme']
+            severity = severity_levels[acne_level] if acne_level is not None else "Unable to Predict"
+            st.subheader("Acne Severity Level")
+            st.write(severity)
+        else:
+            st.subheader("Acne Severity Level")
+            st.write("Model not loaded")
