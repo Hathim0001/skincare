@@ -96,3 +96,13 @@ def main():
         else:
             st.subheader("Acne Severity Level")
             st.write("Model not loaded")
+
+        if skintype_model is not None:
+            skin_type_idx = predict_skin_type(image)
+            skin_types = ['Normal', 'Dry', 'Oily']
+            skin_type = skin_types[skin_type_idx] if skin_type_idx is not None else "Unable to Predict"
+            st.subheader("Skin Type")
+            st.write(skin_type)
+        else:
+            st.subheader("Skin Type")
+            st.write("Model not loaded")
