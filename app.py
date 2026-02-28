@@ -106,3 +106,5 @@ def main():
         else:
             st.subheader("Skin Type")
             st.write("Model not loaded")
+
+        selected_features = st.multiselect("Select additional concerns", features)
