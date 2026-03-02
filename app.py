@@ -108,3 +108,14 @@ def main():
             st.write("Model not loaded")
 
         selected_features = st.multiselect("Select additional concerns", features)
+
+        if st.button("Get Recommendations"):
+            if acne_model is not None and skintype_model is not None:
+                feature_vector = get_feature_vector(skin_type, acne_level, selected_features)
+                recommendations = get_essential_skincare(feature_vector)
+                for category, products in recommendations.items():
+                    st.subheader(category.capitalize())
+                    for product in products:
+                        st.markdown(f"**{product['name']}** - {product['brand']}")
+            else:
+                st.write("Models not available for prediction")
