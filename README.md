@@ -19,4 +19,29 @@ By combining deep convolutional neural networks (**EfficientNet-V2**) for comput
 - [Key Features](#-key-features)
 - [System Pipeline](#-system-pipeline)
 - [Tech Stack](#-tech-stack)
-- [Repository Structure](#-re
+- [Repository Structure](#-repository-structure)
+- [Getting Started](#-getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Streamlit Application](#running-the-streamlit-application)
+  - [CLI Inference](#cli-inference)
+- [Machine Learning & Recommendation Models](#-machine-learning--recommendation-models)
+  - [Acne Severity Classifier](#1-acne-severity-classifier)
+  - [Skin Type Predictor](#2-skin-type-predictor)
+  - [Cosine Similarity Recommender](#3-cosine-similarity-recommender)
+- [Datasets & Web Scraping](#-datasets--web-scraping)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Author & Acknowledgments](#-author--acknowledgments)
+
+---
+
+## 🔬 Overview & Architecture
+
+Choosing appropriate skincare products often poses a significant challenge due to misidentified skin types, fluctuating acne severity, and vast catalogs of conflicting product ingredients. 
+
+**Skincare Sage** solves this problem through a structured, multi-stage pipeline:
+1. **Visual Diagnostic Inference:** Analyzes facial portrait imagery to classify skin type (*Normal, Dry, Oily*) and diagnose acne severity (*Clear, Mild, Severe, Extreme*).
+2. **User Attribute Synergy:** Blends visual diagnostic outputs with user-selected secondary skin concerns (e.g., hydration, dark circles, pore care, anti-aging).
+3. **High-Dimensional Vector Matching:** Computes similarity metrics across categorized skincare products (cleansers, moisturizers, sunscreens, serums, face
