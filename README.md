@@ -44,4 +44,33 @@ Choosing appropriate skincare products often poses a significant challenge due t
 **Skincare Sage** solves this problem through a structured, multi-stage pipeline:
 1. **Visual Diagnostic Inference:** Analyzes facial portrait imagery to classify skin type (*Normal, Dry, Oily*) and diagnose acne severity (*Clear, Mild, Severe, Extreme*).
 2. **User Attribute Synergy:** Blends visual diagnostic outputs with user-selected secondary skin concerns (e.g., hydration, dark circles, pore care, anti-aging).
-3. **High-Dimensional Vector Matching:** Computes similarity metrics across categorized skincare products (cleansers, moisturizers, sunscreens, serums, face
+3. **High-Dimensional Vector Matching:** Computes similarity metrics across categorized skincare products (cleansers, moisturizers, sunscreens, serums, face masks) to produce ranked, actionable recommendations.
+
+```mermaid
+flowchart TD
+    A[User Facial Image] --> B[Image Preprocessing & Normalization 224x224]
+    B --> C[EfficientNet-V2 Acne Classifier]
+    B --> D[Skin Type Classifier CNN]
+    
+    C -->|Acne Severity Level| E[Feature Vector Synthesis]
+    D -->|Skin Type Profile| E
+    F[User Secondary Skin Concerns] --> E
+    
+    E -->|18-Dimensional Sparse Vector| G[Cosine Similarity Engine]
+    H[(Curated Skincare Database)] --> G
+    
+    G --> I[Categorized Product Recommendations]
+    I --> J[Cleansers]
+    I --> K[Moisturizers]
+    I --> L[Sunscreens & Treatments]
+```
+
+---
+
+## ✨ Key Features
+
+- **Automated Acne Severity Classification:** 4 granular clinical tiers (*Clear*, *Mild*, *Severe*, *Extreme*) trained on facial dermatological datasets.
+- **Accurate Skin Type Profiling:** Deep learning inference distinguishing *Normal*, *Dry*, and *Oily* skin patterns based on epidermal texture and sheen.
+- **18-Attribute Feature Vectorization:** Incorporates clinical skin conditions and secondary consumer concerns including *hydration, dullness, fine lines, wrinkles, pore care, dark circles, sensitivity*, and *daily maintenance*.
+- **Multi-Category Regimen Formulation:** Generates balanced routines across vital skincare categories: Cleansers, Face Moisturisers, Sunscreens, Concealers, and Masks.
+- **E-Commerce Metadata Integration:** Real-time catalog entries including product brand, price, target skin type, active concerns, a
