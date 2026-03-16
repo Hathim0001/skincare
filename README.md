@@ -73,4 +73,32 @@ flowchart TD
 - **Accurate Skin Type Profiling:** Deep learning inference distinguishing *Normal*, *Dry*, and *Oily* skin patterns based on epidermal texture and sheen.
 - **18-Attribute Feature Vectorization:** Incorporates clinical skin conditions and secondary consumer concerns including *hydration, dullness, fine lines, wrinkles, pore care, dark circles, sensitivity*, and *daily maintenance*.
 - **Multi-Category Regimen Formulation:** Generates balanced routines across vital skincare categories: Cleansers, Face Moisturisers, Sunscreens, Concealers, and Masks.
-- **E-Commerce Metadata Integration:** Real-time catalog entries including product brand, price, target skin type, active concerns, a
+- **E-Commerce Metadata Integration:** Real-time catalog entries including product brand, price, target skin type, active concerns, and direct purchase links.
+- **Interactive Streamlit Web Dashboard:** Clean, intuitive UI featuring instant drag-and-drop image uploads, visual inspection, and seamless one-click recommendation triggers.
+
+---
+
+## 🛠 Tech Stack
+
+| Component | Technology | Description |
+|---|---|---|
+| **Deep Learning Framework** | [PyTorch](https://pytorch.org/) & [Torchvision](https://pytorch.org/vision/) | EfficientNet-V2-M backbone, custom MLP classification heads |
+| **Recommendation Engine** | [Scikit-Learn](https://scikit-learn.org/) | Cosine Similarity computation, Nearest Neighbors matching |
+| **Data Manipulation** | [Pandas](https://pandas.pydata.org/) & [NumPy](https://numpy.org/) | High-performance feature vector encoding & catalog indexing |
+| **Image Preprocessing** | [Pillow (PIL)](https://python-pillow.org/) | Tensor transformation, RGB normalization, 224x224 scaling |
+| **Web Interface** | [Streamlit](https://streamlit.io/) | Interactive real-time diagnostic dashboard |
+| **Data Harvesting** | [Selenium](https://www.selenium.dev/) | Automated web scraper extracting skincare product metadata |
+| **Large File Storage** | [Git LFS](https://git-lfs.github.com/) | Versioning for trained `.pt` neural network checkpoints |
+
+---
+
+## 📂 Repository Structure
+
+```text
+skincare/
+├── .streamlit/
+│   ├── config.toml               # Streamlit UI theme and presentation config
+│   └── samp                      # Configuration directory anchor
+├── models/
+│   ├── acne/
+│   │   ├── acne_model.py   
