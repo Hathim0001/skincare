@@ -101,4 +101,26 @@ skincare/
 │   └── samp                      # Configuration directory anchor
 ├── models/
 │   ├── acne/
-│   │   ├── acne_model.py   
+│   │   ├── acne_model.py         # PyTorch MyNet architecture (EfficientNet-V2-M)
+│   │   ├── acne_infer.py         # Standalone CLI inference module for acne severity
+│   │   ├── acne-severity.ipynb   # Model training, loss curves & validation notebook
+│   │   └── samp                  # Model placeholder
+│   └── skintype/
+│       ├── skintype-infer.py     # Standalone CLI inference module for skin type
+│       ├── skin-type.ipynb       # Skin type classification training & tuning notebook
+│       └── samp                  # Model placeholder
+├── recommender/
+│   ├── scrap.py                  # Selenium scraper for skincare catalog extraction
+│   ├── essential_skin_care.csv   # Curated, verified skincare product dataset
+│   ├── result.csv                # Raw scraped product metadata and ingredients
+│   ├── recommend.py              # Recommender class with vector cosine similarity
+│   └── recommend.ipynb           # Exploratory data analysis & recommender testing
+├── saved_models/
+│   ├── acne-severity/
+│   │   └── best_6.pt             # Trained PyTorch weights for acne severity model
+│   └── skintype/
+│       └── best_20.pt            # Trained PyTorch weights for skin type model
+├── acne-severe.jpg               # Benchmark evaluation sample (Severe acne)
+├── acne-test.jpg                 # Benchmark evaluation sample (Test sample)
+├── app.py                        # Streamlit web application frontend & pipeline coordinator
+├── requirements.txt              # Production Python package requirements
