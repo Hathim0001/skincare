@@ -149,3 +149,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+# Optimized for Streamlit Cloud and local desktop execution
