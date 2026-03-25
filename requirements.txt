@@ -1,8 +1,7 @@
+streamlit
 torch
 torchvision
 pandas
 numpy
 Pillow
-streamlit
 scikit-learn
-# Production freeze requirements
